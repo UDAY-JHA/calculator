@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="calculator.css" class="css">
+</head>
+
+<body>
+    <div class="outer">
+        <div class="screen" id="screen">
+        </div>
+            <div class="new">
+            <button class="clr btn3" id="nc" onclick="clr()">C</button>
+            <button class="dlt btn3" id="nd" onclick="dlt()">DEL</button>
+        </div>
+        
+        <div class="number">
+            <button class="btn1" id="n7" onclick="get_a7()">7</button>
+            <button class="btn1" id="n8" onclick="get_a8()">8</button>
+            <button class="btn1" id="n9" onclick="get_a9()">9</button>
+            <button class="btn1" id="n4" onclick="get_a4()">4</button>
+            <button class="btn1" id="n5" onclick="get_a5()">5</button>
+            <button class="btn1" id="n6" onclick="get_a6()">6</button>
+            <button class="btn1" id="n1" onclick="get_a1()">1</button>
+            <button class="btn1" id="n2" onclick="get_a2()">2</button>
+            <button class="btn1" id="n3" onclick="get_a3()">3</button>
+            <button class="btn1" id="n." onclick="get_adot()">.</button>
+            <button class="btn1" id="n0" onclick="get_a0()">0</button>
+            <button class="btn1" id="n=" onclick="get_aequal()">=</button>
+        </div>
+        <div class="operator">
+            <button class="btn2" id="o+" onclick="get_oadd()">+</button>
+            <button class="btn2" id="o-" onclick="get_osub()">-</button>
+            <button class="btn2" id="o/" onclick="get_odiv()">/</button>
+            <button class="btn2" id="o*" onclick="get_omul()">*</button>
+        </div>
+    </div>
+    <script>
+        const a=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+       function get_a7(n) {
+           a[0] = document.getElementById('n7').innerText;
+           document.getElementById('screen').innerText += `${a[0]}`;
+       } function get_a8(n) {
+           a[1] = document.getElementById('n8').innerText;
+           document.getElementById('screen').innerText += `${a[1]}`;
+       } function get_a9(n) {
+           a[2] = document.getElementById('n9').innerText;
+           document.getElementById('screen').innerText += `${a[2]}`;
+       } function get_a0(n) {
+           a[3] = document.getElementById('n0').innerText;
+           document.getElementById('screen').innerText += `${a[3]}`;
+       } function get_a6(n) {
+           a[4] = document.getElementById('n6').innerText;
+           document.getElementById('screen').innerText += `${a[4]}`;
+       } function get_a5(n) {
+           a[5] = document.getElementById('n5').innerText;
+           document.getElementById('screen').innerText += `${a[5]}`;
+       } function get_a4(n) {
+           a[6] = document.getElementById('n4').innerText;
+           document.getElementById('screen').innerText += `${a[6]}`;
+       } function get_a3(n) {
+           a[7] = document.getElementById('n3').innerText;
+           document.getElementById('screen').innerText += `${a[7]}`;
+       } function get_a2(n) {
+           a[8] = document.getElementById('n2').innerText;
+           document.getElementById('screen').innerText += `${a[8]}`;
+       } function get_a1(n) {
+           a[9] = document.getElementById('n1').innerText;
+           document.getElementById('screen').innerText += `${a[9]}`;
+       } function get_adot(n) {
+           a[11] = document.getElementById('n.').innerText;
+           document.getElementById('screen').innerText += `${a[11]}`;
+       }
+       function get_oadd(n) {
+           a[12] = document.getElementById('o+').innerText;
+           document.getElementById('screen').innerText += `${a[12]}`;
+           j = 1;
+       }
+       function get_osub(n) {
+           a[13] = document.getElementById('o-').innerText;
+           document.getElementById('screen').innerText += `${a[13]}`;
+           j = 2;
+       } function get_omul(n) {
+           a[14] = document.getElementById('o*').innerText;
+           document.getElementById('screen').innerText += `${a[14]}`;
+           j = 3;
+       } function get_odiv(n) {
+           a[15] = document.getElementById('o/').innerText;
+           document.getElementById('screen').innerText += `${a[15]}`;
+           j = 4;
+       }
+       
+       
+       const ar=[0,0,0,0,0,0];
+       function get_aequal(){
+            let k=0;
+            for(let i=12;i<16;i++){
+                if(a[i]!=0){
+                    k=i;
+                }
+            }
+            const op=document.getElementById('screen').innerText;
+            console.log(op);
+            const main=op.split(`${a[k]}`);
+            console.log(main);
+            
+            switch(j){
+                case 1:{
+                    let ans=Number(main[0])+Number(main[1]);
+                    document.getElementById('screen').innerText=`${ans}` ;
+                    break;
+                }
+                case 2:{
+                    let ans=Number(main[0])-Number(main[1]);
+                    document.getElementById('screen').innerText=`${ans}` ;
+                    break;
+                }
+                case 3:{
+                    let ans=Number(main[0])*Number(main[1]);
+                    document.getElementById('screen').innerText=`${ans}` ;
+                    break;
+                }
+                case 4:{
+                    let ans=Number(main[0])/Number(main[1]);
+                    document.getElementById('screen').innerText=`${ans}` ;
+                    break;
+                }
+            }
+       }
+    function clr(e){
+        document.getElementById('screen').innerText='';
+    }
+    function dlt(e){
+        let k=document.getElementById('screen').innerText;
+        document.getElementById('screen').innerText=`${k.slice(0,k.length-1)}`;
+    }
+    setInterval((e) => {
+        if(document.getElementById('screen').innerText.length>=15){
+        document.getElementById('screen').style.alignItems='start';
+    }
+    }, 100);
+
+    </script>
+</body>
+
+</html>
